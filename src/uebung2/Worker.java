@@ -15,7 +15,7 @@ import java.util.List;
 public class Worker implements Runnable{
     int from;
     int to;
-    List<Integer> doneNums = new ArrayList<>();
+    int sum;
     
     public Worker(int from, int to) {
         this.from = from;
@@ -24,18 +24,25 @@ public class Worker implements Runnable{
     
     @Override
     public void run() {
+        
+//        System.out.println("from: " + from);
+//        System.out.println("to: " + to);
+        
+        
         int diff = to-from;
         
         int tempNum;
-        for(int i = 0; i <= diff; i++){
-            tempNum = ((i*i) + i)/2;
-            tempNum += from;
-            doneNums.add(tempNum);
-        }
+        
+        tempNum = ((diff*diff) + diff)/2;
+        
+        tempNum += from*diff;
+        sum = tempNum;
+        
+        //System.out.println("sum: " + sum);
     }
     
-    public List<Integer> getDoneNums(){
-        return doneNums;
+    public int getSum(){
+        return sum;
     }
     
 }

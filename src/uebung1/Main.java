@@ -55,7 +55,7 @@ public class Main {
         }
         
         executor.shutdown();
-        executor.awaitTermination(1, TimeUnit.HOURS);
+        executor.awaitTermination(1, TimeUnit.MINUTES);
         System.out.println("Finished all threads");
        
     }
