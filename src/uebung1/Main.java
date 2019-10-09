@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +27,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner console = new Scanner(System.in);
         console.useDelimiter("\n");
         
@@ -45,7 +46,17 @@ public class Main {
         
         ExecutorService executor = Executors.newFixedThreadPool(dividerForThreads);
         
+        int tempNums = 0;
+        for(int i = 0; i < dividerForThreads; i++){
+            Runnable worker = new Worker(tempNums, tempNums+diffOfParts, inputNumbers, teiler);
+            executor.execute(worker);
+            
+            tempNums += diffOfParts;
+        }
         
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.HOURS);
+        System.out.println("Finished all threads");
        
     }
     
