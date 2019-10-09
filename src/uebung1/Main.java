@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,6 +43,7 @@ public class Main {
         System.out.println("Jeder Thread muss " + diffOfParts + " Zahlen absuchen");
         
         
+        ExecutorService executor = Executors.newFixedThreadPool(dividerForThreads);
         
         
        
